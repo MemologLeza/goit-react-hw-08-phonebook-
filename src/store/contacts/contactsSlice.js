@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { handleAddContact, handleDeleteContact, handleFetchContacts, handleFulfilled, handlePending, handleRejected } from 'store/handlers/handlers';
-import { addContactThunk, deleteContactThunk, getContactsThunk } from 'store/thunks/thunk';
+import { handleAddContact, handleDeleteContact, handleFetchContacts, handleFulfilled, handlePending, handleRejected } from 'store/contacts/handlers/handlers';
+import { addContactThunk, deleteContactThunk, getContactsThunk } from 'store/contacts/thunks/thunk';
 const contactsSlice = createSlice({
     name: "contacts",
     initialState: {

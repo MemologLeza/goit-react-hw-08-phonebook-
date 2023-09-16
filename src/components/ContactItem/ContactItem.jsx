@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types';
-import styled from './ContactItem.module.css';
 import { useDispatch } from 'react-redux';
-import { deleteContactThunk } from 'store/thunks/thunk';
-const ContactItem = ({ contact: { name, phone, id } }) => {
+import { deleteContactThunk } from '../../store/contacts/thunks/thunk';
+const ContactItem = ({ contact: { name, number, id } }) => {
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteContactThunk(id));
   };
   return (
-    <li className={styled.item}>
-      {name}: {phone}
-      <button className={styled.button} onClick={handleDelete}>
+    <li className="list-group-item d-flex justify-content-between">
+      <p className=" fs-4 ">
+        {name}: {number}
+      </p>
+      <button
+        type="button"
+        className="btn btn-danger btn-sm "
+        onClick={handleDelete}
+      >
+        {' '}
         Delete
       </button>
     </li>

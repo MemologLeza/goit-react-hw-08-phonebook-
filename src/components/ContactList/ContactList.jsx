@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import ContactItem from '../ContactItem/ContactItem';
-import { getContactsThunk } from 'store/thunks/thunk';
+import { getContactsThunk } from '../../store/contacts/thunks/thunk';
 import { useEffect } from 'react';
 
 const ContactList = () => {
@@ -13,6 +13,10 @@ const ContactList = () => {
   }, [dispatch, contacts]);
 
   const filterContacts = () => {
+    if (filter.length <= 0) {
+      return contacts;
+    }
+
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
@@ -20,14 +24,21 @@ const ContactList = () => {
 
   return (
     <>
-      {isLoading && <h2>Loading...</h2>}
-      {error && <h2>{error}</h2>}
+      {isLoading && <h2 className="mb-3 fs-3">Loading...</h2>}
+      {error && <h2 className="mb-3 fs-3"> {error}</h2>}
       {contacts && (
-        <ul>
-          {filterContacts().map(contact => (
-            <ContactItem key={contact.id} contact={contact} />
-          ))}
-        </ul>
+        <>
+          <p className="mb-3 fs-3"> Your Contacts:</p>
+          <ul className="list-group list-group-flush">
+            {filterContacts().length !== 0 ? (
+              filterContacts().map(contact => (
+                <ContactItem key={contact.id} contact={contact} />
+              ))
+            ) : (
+              <p className="mb-3 fs-3">Not found</p>
+            )}
+          </ul>
+        </>
       )}
     </>
   );

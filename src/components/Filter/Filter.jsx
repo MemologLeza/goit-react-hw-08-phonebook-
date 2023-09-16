@@ -1,5 +1,4 @@
-import { setFilter } from 'store/filter/filterSlice';
-import styled from './Filter.module.css';
+import { setFilter } from '../../store/contacts/filter/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Filter = () => {
@@ -10,16 +9,20 @@ const Filter = () => {
     dispatch(setFilter(value));
   };
   return (
-    <label>
-      Find contacts by name
-      <input
-        className={styled.input}
-        type="text"
-        name="filter"
-        onChange={e => onFilterChange(e)}
-        value={filter}
-      />
-    </label>
+    <div className="mb-3">
+      <p className="mb-3 fs-3">Find a contact by name</p>
+
+      <label className="form-label">
+        <input
+          className="form-control"
+          type="text"
+          name="filter"
+          placeholder="Any name"
+          onChange={e => onFilterChange(e)}
+          value={filter}
+        />
+      </label>
+    </div>
   );
 };
 
