@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addContactThunk } from '../../store/contacts/thunks/thunk';
+import Notiflix from 'notiflix';
 
 const ContactForm = () => {
   const { contacts } = useSelector(state => state.contacts);
@@ -13,7 +14,7 @@ const ContactForm = () => {
     const number = e.target.number.value;
     if (isDuplicate(name)) {
       e.target.reset();
-      return alert(`${name} is already in contacts(( `);
+      return Notiflix.Notify.warning(`${name} is already in contacts(( `);
     }
     dispatch(addContactThunk({ name, number }));
     e.target.reset();
