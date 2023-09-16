@@ -2,6 +2,7 @@ import {  handleLogout,  handleRefresh,  handleRefreshPending,  handleRefreshRej
 import { login, logout, refresh, register } from "./operations/operations";
 
 import { createSlice } from '@reduxjs/toolkit'
+import { clearContacts } from "store/contacts/contactsSlice";
 
 const initialState = {
   user: { name: null, email: null },
@@ -19,7 +20,7 @@ const authSlice = createSlice({
             .addCase(login.fulfilled, handleSetUser)
             .addCase(register.rejected, handleSetUserRejected)
             .addCase(login.rejected, handleSetUserRejected)
-        .addCase(logout.fulfilled, handleLogout)
+            .addCase(logout.fulfilled, (state) => { handleLogout(state); clearContacts(state) })
         .addCase(refresh.pending, handleRefreshPending)
             .addCase(refresh.fulfilled, handleRefresh)
         .addCase(refresh.rejected, handleRefreshRejected)

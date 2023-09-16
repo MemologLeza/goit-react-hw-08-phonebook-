@@ -9,8 +9,8 @@ const ContactList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    !contacts && dispatch(getContactsThunk());
-  }, [dispatch, contacts]);
+    dispatch(getContactsThunk());
+  }, [dispatch]);
 
   const filterContacts = () => {
     if (filter.length <= 0) {

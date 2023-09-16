@@ -8,6 +8,13 @@ const contactsSlice = createSlice({
         isLoading: false,
         error:''
     },
+    reducers: {
+        
+        clearContacts: (state) => {
+            state.contacts[0]= 'huj';
+            console.log('yes')
+        }
+        },
     extraReducers: (builder) => {
         builder
             .addCase(getContactsThunk.fulfilled, handleFetchContacts)
@@ -19,4 +26,4 @@ const contactsSlice = createSlice({
     }
 })
 export const contactsReducer = contactsSlice.reducer;
-export const {createContact, deleteContacts} = contactsSlice.actions;
+export const {clearContacts} = contactsSlice.actions;

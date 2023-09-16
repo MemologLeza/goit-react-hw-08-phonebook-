@@ -1,4 +1,5 @@
 import Notiflix from "notiflix";
+// import { clearContacts } from "../contactsSlice";
 export const handlePending = (state) => {
     state.isLoading = true;
     state.error = '';
@@ -30,9 +31,9 @@ export const handleSetUser = (state, { payload }) => {
 export const handleSetUserRejected = () => {
     Notiflix.Notify.failure('Wrong email or password');
 }
-export const handleLogout = (state) => {
+export const handleLogout = ( state) => {
     state.user = { name: null, email: null };
-        state.token = null;
+    state.token = null;
     state.isLoggedIn = false;
     Notiflix.Notify.success('Log out is success');
 }
